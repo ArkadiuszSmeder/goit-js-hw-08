@@ -1,17 +1,20 @@
 // Add imports above this line
-import { galleryItems } from './gallery-items';
+import { galleryItems } from './gallery-items.js';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 // Change code below this line
 
-const galleryTemplate = (item) => `
-  <div class="gallery__item">
-    <a class="gallery__link" href="${item.original}">
-      <img class="gallery__image" src="${item.preview}" data-src="${item.original}" alt="${item.description}">
-    </a>
-  </div>
-`;
+const gallery = document.querySelector(".gallery");
 
 for (const item of galleryItems) {
-  gallery.innerHTML += galleryTemplate(item);
+  gallery.innerHTML += `
+      <div class="gallery__item">
+          <a class="gallery__link" href="${item.original}">
+              <img class="gallery__image" src="${item.preview}" alt="${item.description}">
+          </a>
+      </div>
+  `;
 }
 
 var lightbox = new SimpleLightbox('.gallery a', {
