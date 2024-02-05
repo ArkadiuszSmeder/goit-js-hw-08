@@ -7,15 +7,15 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 
 const gallery = document.querySelector(".gallery");
 
-for (const item of galleryItems) {
-  gallery.innerHTML += `
-      <div class="gallery__item">
-          <a class="gallery__link" href="${item.original}">
-              <img class="gallery__image" src="${item.preview}" alt="${item.description}">
-          </a>
-      </div>
-  `;
-}
+const galleryHTML = galleryItems.map(item => `
+  <div class="gallery__item">
+    <a class="gallery__link" href="${item.original}">
+      <img class="gallery__image" src="${item.preview}" alt="${item.description}">
+    </a>
+  </div>
+`).join('');
+
+gallery.innerHTML = galleryHTML;
 
 var lightbox = new SimpleLightbox('.gallery a', {
     captions: true,
